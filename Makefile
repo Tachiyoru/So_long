@@ -4,9 +4,7 @@ SRCS_DIR = srcs/
 
 GNL_DIR = GNL/
 
-SRCS =		main.c							\
-			${GNL_DIR}get_next_line_utils.c \
-			${GNL_DIR}get_next_line.c 		\
+SRCS =		main.c
 
 OBJS =		${SRCS:.c=.o}
 
@@ -18,7 +16,7 @@ CC =		clang
 
 RM =		rm -f
 
-CFLAGS =	-Wall -Werror -Wextra -fstandalone-debug -g3 -I
+CFLAGS =	-Wall -Werror -Wextra -g
 
 MLX =		./mlx
 
