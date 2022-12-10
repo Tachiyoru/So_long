@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 15:38:21 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/10 15:45:27 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	check_map(t_data *data, char *file)
 {
-	
 	int	fd;
 
 	if (!check_ber(file))
@@ -96,28 +95,28 @@ int	init_map(t_data *data, int fd)
 	return (1);
 }
 
-// int	count_lines(int fd, int lines)
-// {
-// 	char	*line;
-// 	size_t	size;
-// 	int		i;
+int	count_lines(int fd, int lines)
+{
+	char	*line;
+	size_t	size;
+	int		i;
 
-// 	i = 0;
-// 	lines = 0;
-// 	line = get_next_line(fd);
-// 	size = ft_strlen(line);
-// 	if (size <= 3)
-// 		return (lines_error(2), 0);
-// 	while (line != NULL)
-// 	{
-// 		free(line);
-// 		line = get_next_line(fd);
-// 		if (line && ft_strlen(line) != size)
-// 			return (lines_error(3), 0);
-// 		lines++;
-// 		i++;
-// 	}
-// 	if (i <= 3)
-// 		return (lines_error(1), 0);
-// 	return (lines);
-// }
+	i = 0;
+	lines = 0;
+	line = get_next_line(fd);
+	size = ft_strlen(line);
+	if (size <= 3)
+		return (lines_error(2), 0);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line && ft_strlen(line) != size)
+			return (lines_error(3), 0);
+		lines++;
+		i++;
+	}
+	if (i <= 3)
+		return (lines_error(1), 0);
+	return (lines);
+}
