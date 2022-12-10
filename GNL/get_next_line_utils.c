@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:37:00 by sleon             #+#    #+#             */
-/*   Updated: 2022/10/05 14:18:57 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/08 10:54:44 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,14 @@ char	*ft_read_new_line(char *line)
 	s[j] = '\0';
 	free(line);
 	return (s);
+}
+
+size_t	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

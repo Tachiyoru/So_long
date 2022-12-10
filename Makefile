@@ -1,10 +1,18 @@
 NAME =		so_long
 
 SRCS_DIR = srcs/
+CHECK_DIR = check/
 
 GNL_DIR = GNL/
 
-SRCS =		main.c
+SRCS =		main.c									\
+			utils.c									\
+			check_map.c			\
+			check_map2.c				\
+			error.c						\
+			map_way_ok.c						\
+			${GNL_DIR}get_next_line.c								\
+			${GNL_DIR}get_next_line_utils.c
 
 OBJS =		${SRCS:.c=.o}
 
