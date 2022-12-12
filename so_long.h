@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 15:40:37 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/12 11:29:45 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,19 @@ typedef struct s_data
 
 }t_data;
 
-typedef struct s_list_map
+typedef struct s_lst
 {
-	char	*mapline;
-	t_list	*next;
-}t_list;
+	char			*mapline;
+	struct s_lst	*next;
+}t_lst;
 
 /* ***************************/
 /* 			FUNCTIONS		 */
 /* ***************************/
 
 //utils
+t_lst	*ft_lstlast(t_lst *lst);
+t_lst	*new_node(char *content);
 void	*ft_memset(void *a, int i, size_t count);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_puterr(char *str);
@@ -90,7 +92,7 @@ int		check_collectibles(t_data *data, int **bool_map, int x, int y);
 int		way_checking_error(int err);
 
 //check_map2
-void	save_map(t_map *map, int fd);
+void	save_map(t_map *map, t_lst **maplst);
 int		check_char(t_map map);
 int		good_char(t_map *map, char c);
 int		wall_check(t_map map);
@@ -100,8 +102,8 @@ int		do_you_know_the_way(t_data *data);
 int		check_map(t_data *data, char *file);
 int		check_ber(char *file);
 int		pre_check_wrong_map(char *file);
-int		init_map(t_data *data, int fd);
-int		count_lines(int fd, int lines);
+int		init_map(t_data *data, int fd, t_lst **maplst);
+int		count_lines(int fd, int lines, t_lst **maplst);
 
 //error
 int		map_checker_error(int err);

@@ -6,37 +6,55 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 15:40:59 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/12 14:29:14 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	save_map(t_map *map, int fd)
+void	print_tab2(char **map)
+{
+	int	i = -1;
+	int	j = -1;
+
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+			dprintf(STDERR_FILENO, "%c", map[i][j]);
+		dprintf(STDERR_FILENO, "\n");
+	}
+	dprintf(STDERR_FILENO, "\n");
+}
+
+void	save_map(t_map *map, t_lst **maplst)
 {
 	int		i;
 	int		column;
 	int		row;
-	char	*line;
+	int		size;
+	t_lst	*save;
 
 	i = -1;
 	row = 0;
 	column = -1;
-	line = get_next_line(fd);
-	while (line != NULL)
+	size = ft_strlen((*maplst)->mapline) + 1;
+	save = *maplst;
+	while (save)
 	{
-		map->map[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
+		map->map[row] = ft_calloc(size, sizeof(char));
 		if (!map->map[row])
 			return (free (map->map));
-		while (line[++i] != '\0' && line[i] != '\n')
-			map->map[row][++column] = line[i];
+		while (save->mapline[++i] != '\0' && save->mapline[i] != '\n')
+			map->map[row][++column] = save->mapline[i];
+		save = save->next;
 		column = -1;
 		i = -1;
 		row++;
-		free(line);
-		line = get_next_line(fd);
 	}
 	map->map[row] = NULL;
+	dprintf(STDERR_FILENO, "map.map =\n");
+	print_tab2(map->map);
 }
 
 int	check_char(t_map map)
@@ -115,10 +133,16 @@ int	do_you_know_the_way(t_data *data)
 	map_0 = init_map0(data);
 	if (!map_0)
 		return (0);
-	if (!check_way(data, map_0, data->player.pos_x, data->player.pos_y))
+	if (!check_way(data, map_0, data->player.pos_y, data->player.pos_x))
+	{
+		dprintf(STDERR_FILENO, "oui");
 		return (way_checking_error(1));
+	}
 	fill_map_0(data, map_0);
-	if (check_collectibles(data, map_0, data->player.pos_x, data->player.pos_y))
+	if (check_collectibles(data, map_0, data->player.pos_y, data->player.pos_x) == data->map.collectible)
+	{
+		dprintf(STDERR_FILENO, "non");
 		return (way_checking_error(1));
+	}
 	return (1);
 }

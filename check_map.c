@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 15:45:27 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/12 13:55:04 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	check_map(t_data *data, char *file)
 {
-	int	fd;
+	int		fd;
+	t_lst	**map_lst;
 
 	if (!check_ber(file))
 		return (map_checker_error(1));
@@ -23,12 +24,11 @@ int	check_map(t_data *data, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (write(1, "Failed to open\n", 16), 0);
-	if (!init_map(data, fd))
+	map_lst = malloc(sizeof(t_lst *));
+	if (!init_map(data, fd, map_lst))
 		return (0);
 	close (fd);
-	fd = open(file, O_RDONLY);
-	save_map(&data->map, fd);
-	close(fd);
+	save_map(&data->map, map_lst);
 	if (!check_char(data->map))
 		return (0);
 	if (!wall_check(data->map))
@@ -83,40 +83,51 @@ int	pre_check_wrong_map(char *file)
 	return (free(buf), 1);
 }
 
-int	init_map(t_data *data, int fd)
+int	init_map(t_data *data, int fd, t_lst **maplst)
 {
 	data->map.collectible = 0;
 	data->map.exit = 0;
 	data->map.player = 0;
-	data->map.lines = count_lines(fd, data->map.lines);
+	data->map.lines = count_lines(fd, data->map.lines, maplst);
 	if (data->map.lines == 0)
 		return (0);
 	data->map.map = ft_calloc(data->map.lines + 1, sizeof(char *));
+	// data->map.map[data->map.lines] = 0; // ??
 	return (1);
 }
 
-int	count_lines(int fd, int lines)
+int	count_lines(int fd, int lines, t_lst **maplst)
 {
 	char	*line;
 	size_t	size;
-	int		i;
+	t_lst	*tmp;
+	t_lst	*new;
+	t_lst	*last;
 
-	i = 0;
-	lines = 0;
+	lines = 1;
 	line = get_next_line(fd);
 	size = ft_strlen(line);
 	if (size <= 3)
 		return (lines_error(2), 0);
+	tmp = *maplst;
+	tmp = new_node(line);
 	while (line != NULL)
 	{
 		free(line);
 		line = get_next_line(fd);
+		dprintf(STDOUT_FILENO, "line : %s", line);
 		if (line && ft_strlen(line) != size)
-			return (lines_error(3), 0);
-		lines++;
-		i++;
+			return (free(line), lines_error(3), 0);
+		if (line)
+		{
+			new = new_node(line);
+			last = ft_lstlast(tmp);
+			last->next = new;
+			++lines;
+		}
 	}
-	if (i <= 3)
+	*maplst = tmp;
+	if (lines <= 3)
 		return (lines_error(1), 0);
 	return (lines);
 }

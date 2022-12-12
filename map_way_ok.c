@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 12:22:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 13:53:27 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/12 14:25:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int	**init_map0(t_data *data)
 	j = -1;
 	while (data->map.map[++i])
 		;
-	while (data->map.map[i - 1][++j])
+	while (data->map.map[0][++j])
 		;
-	map_0 = ft_calloc(i, sizeof(int *));
+	map_0 = ft_calloc(i + 1, sizeof(int *));
 	if (!map_0)
 		return (NULL);
 	i = -1;
 	while (data->map.map[++i])
 	{
-		map_0[i] = ft_calloc(j, sizeof(int));
+		map_0[i] = ft_calloc(j + 1, sizeof(int));
 		if (!map_0[i])
 			return (NULL);
 	}
@@ -53,30 +53,58 @@ void	fill_map_0(t_data *data, int **map_0)
 				map_0[i][j] = 1;
 			else if (data->map.map[i][j] == 'P')
 			{
+				map_0[i][j] = 0;
 				data->player.pos_x = j;
 				data->player.pos_y = i;
 			}
 			else
+			{
 				map_0[i][j] = 0;
+			}
 		}
+		j = -1;
+		map_0[i][j] = '\0';
+		while (++j < 10)
+			dprintf(STDERR_FILENO, "%d", map_0[i][j]);
+		dprintf(STDERR_FILENO, "\n");
 	}
+	dprintf(STDERR_FILENO, "\n");
 }
 
-int	check_way(t_data *data, int **map_0, int x, int y)
+void	print_tab(int **map_0)
 {
-	map_0[x][y] = 1;
-	if (data->map.map[x + 1][y] == 'E' || data->map.map[x - 1][y] == 'E'
-		|| data->map.map[x][y + 1] == 'E' || data->map.map[x][y - 1] == 'E')
+	int	i = -1;
+	int	j = -1;
+
+	while (map_0[++i])
+	{
+		j = -1;
+		while (map_0[i][++j])
+			dprintf(STDERR_FILENO, "%d", map_0[i][j]);
+		dprintf(STDERR_FILENO, "\n");
+	}
+	dprintf(STDERR_FILENO, "\n");
+
+}
+
+int	check_way(t_data *data, int **map_0, int y, int x)
+{
+	// print_tab(map_0);
+	if (map_0[y][x] == 1)
+		return (0);
+	map_0[y][x] = 1;
+	if (data->map.map[y + 1][x] == 'E' || data->map.map[y - 1][x] == 'E'
+		|| data->map.map[y][x + 1] == 'E' || data->map.map[y][x - 1] == 'E')
 		return (1);
-	if ((map_0[x + 1][y] == 'E' && check_way(data, map_0, x, y))
-		|| (map_0[x - 1][y] == 'E' && check_way(data, map_0, x, y))
-		|| (map_0[x][y + 1] == 'E' && check_way(data, map_0, x, y))
-		|| (map_0[x][y - 1] == 'E' && check_way(data, map_0, x, y)))
+	if ((map_0[y + 1][x] == 0 && check_way(data, map_0, y + 1, x))
+		|| (map_0[y - 1][x] == 0 && check_way(data, map_0, y - 1, x))
+		|| (map_0[y][x + 1] == 0 && check_way(data, map_0, y, x + 1))
+		|| (map_0[y][x - 1] == 0 && check_way(data, map_0, y, x - 1)))
 		return (1);
 	return (0);
 }
 
-int	check_collectibles(t_data *data, int **bool_map, int x, int y)
+int	check_collectibles(t_data *data, int **bool_map, int y, int x)
 {
 	int	cnt;
 
