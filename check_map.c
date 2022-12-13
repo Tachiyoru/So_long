@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/13 11:00:41 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/13 11:24:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,31 +85,32 @@ int	pre_check_wrong_map(char *file)
 
 int	init_map(t_data *data, int fd, t_lst **maplst)
 {
+	size_t	size;
+
 	data->map.collectible = 0;
 	data->map.exit = 0;
 	data->map.player = 0;
-	data->map.lines = count_lines(fd, data->map.lines, maplst);
-	if (data->map.lines == 0)
-		return (0);
-	data->map.size_x = data->map.lines;
-	data->map.size_y = ft_strlen((*maplst)->mapline) - 1;
+	size = 0;
+	data->map.lines = count_lines(fd, 1, maplst, size);
+	if (data->map.lines < 3)
+		return (lines_error(1));
+	data->map.size_y = data->map.lines;
+	data->map.size_x = ft_strlen((*maplst)->mapline) - 1;
+	if (data->map.size_x < 4)
+		return (lines_error(2));
 	data->map.map = ft_calloc(data->map.lines + 1, sizeof(char *));
 	return (1);
 }
 
-int	count_lines(int fd, int lines, t_lst **maplst)
+int	count_lines(int fd, int lines, t_lst **maplst, size_t size)
 {
 	char	*line;
-	size_t	size;
 	t_lst	*tmp;
 	t_lst	*new;
 	t_lst	*last;
 
-	lines = 1;
 	line = get_next_line(fd);
 	size = ft_strlen(line);
-	if (size <= 3)
-		return (lines_error(2), 0);
 	tmp = *maplst;
 	tmp = new_node(line);
 	while (line != NULL)
@@ -117,17 +118,15 @@ int	count_lines(int fd, int lines, t_lst **maplst)
 		free(line);
 		line = get_next_line(fd);
 		if (line && ft_strlen(line) != size)
-			return (free(line), lines_error(3), 0);
-		if (line)
+			return (free(line), lines_error(3));
+		if (line && ++lines)
 		{
 			new = new_node(line);
 			last = ft_lstlast(tmp);
 			last->next = new;
-			++lines;
 		}
 	}
+	free(line);
 	*maplst = tmp;
-	if (lines <= 3)
-		return (lines_error(1), 0);
 	return (lines);
 }

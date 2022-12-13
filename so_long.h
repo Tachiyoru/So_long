@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/13 10:59:59 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/13 11:15:55 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		check_map(t_data *data, char *file);
 int		check_ber(char *file);
 int		pre_check_wrong_map(char *file);
 int		init_map(t_data *data, int fd, t_lst **maplst);
-int		count_lines(int fd, int lines, t_lst **maplst);
+int		count_lines(int fd, int lines, t_lst **maplst, size_t size);
 
 //error
 int		map_checker_error(int err);
