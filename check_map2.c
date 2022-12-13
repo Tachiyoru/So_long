@@ -6,26 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/12 14:29:14 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/13 11:01:11 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	print_tab2(char **map)
-{
-	int	i = -1;
-	int	j = -1;
-
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-			dprintf(STDERR_FILENO, "%c", map[i][j]);
-		dprintf(STDERR_FILENO, "\n");
-	}
-	dprintf(STDERR_FILENO, "\n");
-}
 
 void	save_map(t_map *map, t_lst **maplst)
 {
@@ -53,8 +38,6 @@ void	save_map(t_map *map, t_lst **maplst)
 		row++;
 	}
 	map->map[row] = NULL;
-	dprintf(STDERR_FILENO, "map.map =\n");
-	print_tab2(map->map);
 }
 
 int	check_char(t_map map)
@@ -134,15 +117,9 @@ int	do_you_know_the_way(t_data *data)
 	if (!map_0)
 		return (0);
 	if (!check_way(data, map_0, data->player.pos_y, data->player.pos_x))
-	{
-		dprintf(STDERR_FILENO, "oui");
 		return (way_checking_error(1));
-	}
 	fill_map_0(data, map_0);
 	if (check_collectibles(data, map_0, data->player.pos_y, data->player.pos_x) == data->map.collectible)
-	{
-		dprintf(STDERR_FILENO, "non");
 		return (way_checking_error(1));
-	}
 	return (1);
 }

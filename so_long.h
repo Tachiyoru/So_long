@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/12 11:29:45 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/13 10:59:59 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 
 typedef struct s_map
 {
+	int		size_x;
+	int		size_y;
 	int		collectible;
 	int		player;
 	int		exit;

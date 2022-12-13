@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/12 13:55:04 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/13 11:00:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,9 @@ int	init_map(t_data *data, int fd, t_lst **maplst)
 	data->map.lines = count_lines(fd, data->map.lines, maplst);
 	if (data->map.lines == 0)
 		return (0);
+	data->map.size_x = data->map.lines;
+	data->map.size_y = ft_strlen((*maplst)->mapline) - 1;
 	data->map.map = ft_calloc(data->map.lines + 1, sizeof(char *));
-	// data->map.map[data->map.lines] = 0; // ??
 	return (1);
 }
 
@@ -115,7 +116,6 @@ int	count_lines(int fd, int lines, t_lst **maplst)
 	{
 		free(line);
 		line = get_next_line(fd);
-		dprintf(STDOUT_FILENO, "line : %s", line);
 		if (line && ft_strlen(line) != size)
 			return (free(line), lines_error(3), 0);
 		if (line)

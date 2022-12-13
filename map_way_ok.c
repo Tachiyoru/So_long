@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 12:22:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/12 14:25:00 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/13 11:01:33 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,32 +64,11 @@ void	fill_map_0(t_data *data, int **map_0)
 		}
 		j = -1;
 		map_0[i][j] = '\0';
-		while (++j < 10)
-			dprintf(STDERR_FILENO, "%d", map_0[i][j]);
-		dprintf(STDERR_FILENO, "\n");
 	}
-	dprintf(STDERR_FILENO, "\n");
-}
-
-void	print_tab(int **map_0)
-{
-	int	i = -1;
-	int	j = -1;
-
-	while (map_0[++i])
-	{
-		j = -1;
-		while (map_0[i][++j])
-			dprintf(STDERR_FILENO, "%d", map_0[i][j]);
-		dprintf(STDERR_FILENO, "\n");
-	}
-	dprintf(STDERR_FILENO, "\n");
-
 }
 
 int	check_way(t_data *data, int **map_0, int y, int x)
 {
-	// print_tab(map_0);
 	if (map_0[y][x] == 1)
 		return (0);
 	map_0[y][x] = 1;
