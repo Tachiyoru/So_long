@@ -6,11 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/13 11:24:34 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 15:01:53 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	check_map(t_data *data, char *file)
 {
@@ -91,11 +91,14 @@ int	init_map(t_data *data, int fd, t_lst **maplst)
 	data->map.exit = 0;
 	data->map.player = 0;
 	size = 0;
+	data->player.move_count = 0;
 	data->map.lines = count_lines(fd, 1, maplst, size);
 	if (data->map.lines < 3)
 		return (lines_error(1));
 	data->map.size_y = data->map.lines;
-	data->map.size_x = ft_strlen((*maplst)->mapline) - 1;
+	data->map.size_x = ft_strlen2((*maplst)->mapline);
+	if (data->map.size_x < 0)
+		data->map.size_x = 0;
 	if (data->map.size_x < 4)
 		return (lines_error(2));
 	data->map.map = ft_calloc(data->map.lines + 1, sizeof(char *));
@@ -111,7 +114,6 @@ int	count_lines(int fd, int lines, t_lst **maplst, size_t size)
 
 	line = get_next_line(fd);
 	size = ft_strlen(line);
-	tmp = *maplst;
 	tmp = new_node(line);
 	while (line != NULL)
 	{

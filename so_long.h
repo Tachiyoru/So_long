@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/13 11:15:55 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 14:54:38 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,16 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define WINDOW_WIDTH 500
-# define WINDOW_HEIGHT 500
+# define IMG_SIZE 100
+
+# define GROUND			"image/ground.xpm"
+# define PLAYER_DOWN	"image/player_down.xpm"
+// # define PLAYER_UP		"image/player_up.xpm"
+// # define PLAYER_LEFT	"image/player_left.xpm"
+// # define PLAYER_RIGHT	"image/player_right.xpm"
+# define ITEM			"image/item.xpm"
+# define EXIT			"image/exit.xpm"
+# define WALL			"image/wall.xpm"
 
 # define K_ESC 65307
 # define K_UP 65362
@@ -39,6 +47,19 @@
 /* ***************************/
 /* 			STRUCTS			 */
 /* ***************************/
+
+typedef struct s_image
+{
+	void	*mlx_img;
+	void	*wall;
+	void	*exit;
+	void	*ground;
+	void	*player_left;
+	void	*player_up;
+	void	*player_down;
+	void	*player_right;
+	void	*item;
+}t_image;
 
 typedef struct s_map
 {
@@ -58,12 +79,16 @@ typedef struct s_player
 	int		pos_y;
 	int		collected;
 	int		open_exit;
+	int		move_count;
 }t_player;
 
 typedef struct s_data
 {
+	int			win_largeur;
+	int			win_longueur;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_image		image;
 	t_map		map;
 	t_player	player;
 
@@ -79,12 +104,23 @@ typedef struct s_lst
 /* 			FUNCTIONS		 */
 /* ***************************/
 
+char	*ft_itoa(int n);
+size_t	ft_strlen2(char *s);
+
 //utils
 t_lst	*ft_lstlast(t_lst *lst);
 t_lst	*new_node(char *content);
 void	*ft_memset(void *a, int i, size_t count);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_puterr(char *str);
+
+//gaming
+void	what_char(t_data *data, int i, int j);
+int		gaming(t_data *data);
+
+//setup_mlx
+int		setup_window(t_data *data);
+int		image_to_mlx(t_data	*data);
 
 //map_way_ok
 int		**init_map0(t_data *data);

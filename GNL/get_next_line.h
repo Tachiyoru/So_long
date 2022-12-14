@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:37:05 by sleon             #+#    #+#             */
-/*   Updated: 2022/10/05 14:17:24 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 14:08:48 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
+# include "../so_long.h"
 
 # define BUFFER_SIZE 10
 

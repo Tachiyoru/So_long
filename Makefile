@@ -5,18 +5,22 @@ CHECK_DIR = check/
 
 GNL_DIR = GNL/
 
-SRCS =		main.c									\
-			utils.c									\
-			check_map.c			\
-			check_map2.c				\
-			error.c						\
-			map_way_ok.c						\
-			${GNL_DIR}get_next_line.c								\
+SRCS =		main.c							\
+			${SRCS_DIR}utils2.c				\
+			${SRCS_DIR}gaming.c				\
+			${SRCS_DIR}mapping.c			\
+			${SRCS_DIR}setup_mlx.c			\
+			${SRCS_DIR}utils.c				\
+			${SRCS_DIR}check_map.c			\
+			${SRCS_DIR}check_map2.c			\
+			${SRCS_DIR}error.c				\
+			${SRCS_DIR}map_way_ok.c			\
+			${GNL_DIR}get_next_line.c		\
 			${GNL_DIR}get_next_line_utils.c
 
 OBJS =		${SRCS:.c=.o}
 
-DEFAULT			=	\033[0m
+DEFAULT			=	\033[1;0m
 RED				=	\033[1;31m
 GREEN			=	\033[1;32m
 
@@ -24,14 +28,16 @@ CC =		clang
 
 RM =		rm -f
 
-CFLAGS =	-Wall -Werror -Wextra -g
+CFLAGS =	-Wall -Werror -Wextra -fstandalone-debug -g3 -I.
 
 MLX =		./mlx
 
 MLX_LIB = 	./mlx/libmlx_Linux.a
 
-.c.o:		${DEPS}
-		${CC} ${CFLAGS} -I${INCL} -I${MLX} -g3 -c $< -o ${<:.c=.o}
+all:		${NAME}
+
+.c.o:
+		${CC} ${CFLAGS} -I${MLX} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS} $(MLX_LIB)
 		${CC} ${CFLAGS}  ${OBJS} -o ${NAME} ${MLX_LIB}\
@@ -40,9 +46,6 @@ $(NAME):	${OBJS} $(MLX_LIB)
 
 $(MLX_LIB):
 		make -C ${MLX} -j
-
-
-all:		${NAME}
 
 clean:
 		${RM} ${OBJS}

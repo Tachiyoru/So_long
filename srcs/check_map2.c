@@ -6,11 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/13 11:25:12 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 14:54:58 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	save_map(t_map *map, t_lst **maplst)
 {
@@ -23,7 +23,7 @@ void	save_map(t_map *map, t_lst **maplst)
 	i = -1;
 	row = 0;
 	column = -1;
-	size = ft_strlen((*maplst)->mapline) + 1;
+	size = ft_strlen2((*maplst)->mapline) + 1;
 	save = *maplst;
 	while (save)
 	{

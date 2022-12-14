@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 10:55:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/10/05 13:34:16 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 14:14:40 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_read_line(int fd, char *line)
 	char	*buff;
 	int		byte_readed;
 
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buff = ft_calloc((BUFFER_SIZE + 1), 1);
 	if (!buff)
 		return (NULL);
 	byte_readed = 1;

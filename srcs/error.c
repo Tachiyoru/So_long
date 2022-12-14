@@ -6,11 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:15:54 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 13:37:23 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 11:27:50 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	map_checker_error(int err)
 {

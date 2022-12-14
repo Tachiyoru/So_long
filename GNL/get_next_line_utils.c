@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:37:00 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 16:49:17 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 14:43:12 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ char	*ft_strjoin(char *line, char *buff)
 
 	if (!line)
 	{
-		line = (char *)malloc(sizeof(char) * 1);
+		line = (char *)ft_calloc(sizeof(char), 1);
 		line[0] = '\0';
 	}
 	if (!line || !buff)
 		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buff) + 1));
+	str = ft_calloc((ft_strlen(line) + ft_strlen(buff) + 1), sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = -1;
@@ -68,7 +68,7 @@ char	*ft_line_to_buff(char *line)
 		return (NULL);
 	while (line[i] && line[i] != '\n')
 		i++;
-	s = (char *)malloc(sizeof(char) * (i + 2));
+	s = (char *)ft_calloc((i + 2), sizeof(char));
 	if (!s)
 		return (NULL);
 	i = 0;
@@ -100,7 +100,7 @@ char	*ft_read_new_line(char *line)
 		free (line);
 		return (NULL);
 	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(line) - i + 1));
+	s = (char *)ft_calloc((ft_strlen(line) - i + 1), 1);
 	if (!s)
 		return (NULL);
 	i++;

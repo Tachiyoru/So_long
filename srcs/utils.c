@@ -6,11 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/10 16:35:35 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 11:28:09 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 t_lst	*ft_lstlast(t_lst *lst)
 {

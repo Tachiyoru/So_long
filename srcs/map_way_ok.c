@@ -6,11 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 12:22:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/13 11:01:33 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 13:45:29 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	**init_map0(t_data *data)
 {
@@ -62,8 +62,7 @@ void	fill_map_0(t_data *data, int **map_0)
 				map_0[i][j] = 0;
 			}
 		}
-		j = -1;
-		map_0[i][j] = '\0';
+		map_0[i][j] = 0;
 	}
 }
 
