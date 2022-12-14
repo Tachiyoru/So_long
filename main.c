@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 14:59:02 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/14 15:03:58 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	key_capture(int key, t_data *data)
 		free(data->mlx_ptr);
 		exit(1);
 	}
-	else if (ft_strchr2("wasd", keysym))
-		move_player(data, keysym);
+	else if (ft_strchr2("wasd", key))
+		move_player(data, key);
 	return (0);
 }
 
