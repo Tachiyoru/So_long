@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 14:54:38 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/15 13:34:56 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,11 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_puterr(char *str);
 
 //gaming
+void	movements(t_data *data, int key);
+
+//mapping
 void	what_char(t_data *data, int i, int j);
-int		gaming(t_data *data);
+int		mapping(t_data *data);
 
 //setup_mlx
 int		setup_window(t_data *data);
@@ -151,6 +154,7 @@ int		wall_checker_error(int err);
 int		pre_check_wrong_map_error(char *buf, int err);
 
 //main
+int		key_capture(int key, t_data data);
 int		main(int argc, char **argv);
 
 #endif

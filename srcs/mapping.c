@@ -6,13 +6,13 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:16:12 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:01:37 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/15 13:35:25 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	gaming(t_data *data)
+int	mapping(t_data *data)
 {
 	int	i;
 	int	j;
