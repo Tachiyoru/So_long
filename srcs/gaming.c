@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:04:29 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/15 15:01:17 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/15 15:24:56 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ void	print_tab(t_data *data)
 	}
 	dprintf(STDERR_FILENO, "%d", data->player.pos_y);
 	dprintf(STDERR_FILENO, "%d", data->player.pos_x);
+}
+
+void	salut(t_data data)
+{
+	mlx_loop_hook(data.mlx_ptr, &mapping, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &key_capture, &data);
+	mlx_hook(data.win_ptr, ClientMessage, LeaveWindowMask,
+		&crossbutton, &data);
+	mlx_loop(data.mlx_ptr);
 }
 
 void	movements(t_data *data, int key)

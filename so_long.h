@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/15 13:34:56 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/15 15:23:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ typedef struct s_lst
 /* ***************************/
 /* 			FUNCTIONS		 */
 /* ***************************/
+void	salut(t_data data);
+void	print_tab(t_data *data);
 
 char	*ft_itoa(int n);
 size_t	ft_strlen2(char *s);
@@ -115,6 +117,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_puterr(char *str);
 
 //gaming
+int		crossbutton(t_data *data);
 void	movements(t_data *data, int key);
 
 //mapping
@@ -154,7 +157,7 @@ int		wall_checker_error(int err);
 int		pre_check_wrong_map_error(char *buf, int err);
 
 //main
-int		key_capture(int key, t_data data);
+int		key_capture(int key, t_data *data);
 int		main(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/15 15:05:39 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/15 15:23:12 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,34 @@ int	is_key(int k)
 	return (0);
 }
 
-int	key_capture(int key, t_data data)
+// void	print_tab(t_data *data)
+// {
+// 	int	i = -1;
+// 	int	j = -1;
+// 	while (data->map.map[++i])
+// 	{
+// 		while (data->map.map[i][++j])
+// 			dprintf(STDERR_FILENO, "%c", data->map.map[i][j]);
+// 		j = -1;
+// 		dprintf(STDERR_FILENO, "\n");
+// 	}
+// 	dprintf(STDERR_FILENO, "%d", data->player.pos_y);
+// 	dprintf(STDERR_FILENO, "%d", data->player.pos_x);
+// }
+
+int	key_capture(int key, t_data *data)
 {
+	print_tab(data);
 	if (key == K_ESC)
 	{
-		mlx_destroy_window(data.mlx_ptr, data.win_ptr);
-		data.win_ptr = NULL;
-		mlx_destroy_display(data.mlx_ptr);
-		free(data.mlx_ptr);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
 		exit(1);
 	}
 	if (is_key(key))
-		movements(&data, key);
+		movements(data, key);
 	return (0);
 }
 
@@ -60,13 +76,7 @@ int	main(int ac, char **av)
 	if (!setup_window(&data))
 		return (false);
 	mapping(&data);
-	
-	mlx_loop_hook(data.mlx_ptr, &mapping, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &key_capture, &data);
-	mlx_hook(data.win_ptr, ClientMessage, LeaveWindowMask,
-		&crossbutton, &data);
-	// print_tab(&data);
-	mlx_loop(data.mlx_ptr);
+	salut(data);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 	return (true);
