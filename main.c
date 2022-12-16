@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/15 15:23:12 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/16 12:31:17 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,19 @@
 
 int	is_key(int k)
 {
-	if (k == K_A)
+	if (k == K_A || k == K_LEFT)
 		return (1);
-	else if (k == K_W)
+	else if (k == K_W || k == K_UP)
 		return (1);
-	else if (k == K_S)
+	else if (k == K_S || k == K_DOWN)
 		return (1);
-	else if (k == K_D)
+	else if (k == K_D || k == K_RIGHT)
 		return (1);
 	return (0);
 }
 
-// void	print_tab(t_data *data)
-// {
-// 	int	i = -1;
-// 	int	j = -1;
-// 	while (data->map.map[++i])
-// 	{
-// 		while (data->map.map[i][++j])
-// 			dprintf(STDERR_FILENO, "%c", data->map.map[i][j]);
-// 		j = -1;
-// 		dprintf(STDERR_FILENO, "\n");
-// 	}
-// 	dprintf(STDERR_FILENO, "%d", data->player.pos_y);
-// 	dprintf(STDERR_FILENO, "%d", data->player.pos_x);
-// }
-
 int	key_capture(int key, t_data *data)
 {
-	print_tab(data);
 	if (key == K_ESC)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/15 15:23:30 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/16 14:09:35 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define IMG_SIZE 100
 
 # define GROUND			"image/ground.xpm"
-# define PLAYER_DOWN	"image/player_down.xpm"
+# define PLAYER_DOWN	"image/player.xpm"
 // # define PLAYER_UP		"image/player_up.xpm"
-// # define PLAYER_LEFT	"image/player_left.xpm"
+// # define PLAYER_LEFT	"image/player.xpm"
 // # define PLAYER_RIGHT	"image/player_right.xpm"
 # define ITEM			"image/item.xpm"
 # define EXIT			"image/exit.xpm"
