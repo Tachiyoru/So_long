@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/16 14:28:16 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 16:06:04 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,42 +41,42 @@ void	save_map(t_map *map, t_lst **maplst)
 	map->map[row] = NULL;
 }
 
-int	check_char(t_map map)
+int	check_char(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (map.map[++i])
+	while (data->map.map[++i])
 	{
 		j = -1;
-		while (map.map[i][++j])
+		while (data->map.map[i][++j])
 		{
-			if (!good_char(&map, map.map[i][j]))
+			if (!good_char(data, data->map.map[i][j]))
 				return (present_char_error(1));
 		}
 	}
-	if (map.collectible < 1)
+	if (data->map.collectible < 1)
 		return (present_char_error(2));
-	if (map.player != 1)
+	if (data->map.player != 1)
 		return (present_char_error(4));
-	if (map.exit != 1)
+	if (data->map.exit != 1)
 		return (present_char_error(3));
 	return (1);
 }
 
-int	good_char(t_map *map, char c)
+int	good_char(t_data *data, char c)
 {
 	if (c == '1')
 		return (1);
 	if (c == '0')
 		return (1);
 	else if (c == 'C')
-		map->collectible++;
+		data->map.collectible++;
 	else if (c == 'E')
-		map->exit++;
+		data->map.exit++;
 	else if (c == 'P')
-		map->player++;
+		data->map.player++;
 	else
 		return (0);
 	return (1);
@@ -121,7 +121,7 @@ int	do_you_know_the_way(t_data *data)
 		return (way_checking_error(1));
 	fill_map_0(data, map_0);
 	if (check_collectibles(data, map_0, data->player.pos_y, data->player.pos_x)
-		== data->map.collectible)
+		!= data->map.collectible)
 		return (way_checking_error(1));
 	return (1);
 }
