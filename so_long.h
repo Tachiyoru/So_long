@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 15:59:41 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 16:58:03 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 // # define PLAYER_RIGHT	"image/player_right.xpm"
 # define ITEM			"image/chest_c.xpm"
 # define EXIT			"image/exit_c.xpm"
+# define EXIT_O			"image/exit_o.xpm"
 # define WALL			"image/wall.xpm"
 
 # define K_ESC 65307
@@ -53,6 +54,7 @@ typedef struct s_image
 	void	*mlx_img;
 	void	*wall;
 	void	*exit;
+	void	*exit_o;
 	void	*ground;
 	void	*player_left;
 	void	*player_up;
@@ -77,6 +79,8 @@ typedef struct s_player
 {
 	int		pos_x;
 	int		pos_y;
+	int		exit_x;
+	int		exit_y;
 	int		collected;
 	int		open_exit;
 	int		move_count;

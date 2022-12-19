@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 16:06:04 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 16:08:20 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	save_map(t_map *map, t_lst **maplst)
 		i = -1;
 		row++;
 	}
-	// free_lst(maplst);
 	map->map[row] = NULL;
 }
+	// MEMO free_lst(maplst);
 
 int	check_char(t_data *data)
 {

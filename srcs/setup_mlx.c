@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:43:04 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 15:31:48 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 16:58:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int	image_to_mlx(t_data	*data)
 	data->image.exit = mlx_xpm_file_to_image(data->mlx_ptr, EXIT,
 			&img, &img);
 	if (!data->image.exit)
+		return (0);
+	data->image.exit_o = mlx_xpm_file_to_image(data->mlx_ptr, EXIT_O,
+			&img, &img);
+	if (!data->image.exit_o)
 		return (0);
 	data->image.player_down = mlx_xpm_file_to_image(data->mlx_ptr, PLAYER_DOWN,
 			&img, &img);

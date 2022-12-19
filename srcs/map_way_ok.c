@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 12:22:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 13:45:29 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 16:50:36 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,18 @@ void	fill_map_0(t_data *data, int **map_0)
 		j = -1;
 		while (data->map.map[i][++j])
 		{
+				map_0[i][j] = 0;
 			if (data->map.map[i][j] == '1')
 				map_0[i][j] = 1;
 			else if (data->map.map[i][j] == 'P')
 			{
-				map_0[i][j] = 0;
-				data->player.pos_x = j;
 				data->player.pos_y = i;
+				data->player.pos_x = j;
 			}
-			else
+			else if (data->map.map[i][j] == 'E')
 			{
-				map_0[i][j] = 0;
+				data->player.exit_y = i;
+				data->player.exit_x = j;
 			}
 		}
 		map_0[i][j] = 0;

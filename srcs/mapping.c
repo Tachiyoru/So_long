@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:16:12 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 15:33:31 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 17:00:20 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	what_char(t_data *data, int i, int j)
 			data->image.ground, j * IMG_SIZE, i * IMG_SIZE);
 	else if (data->map.map[i][j] == 'E')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.exit,
+			j * IMG_SIZE, i * IMG_SIZE);
+	else if (data->map.map[i][j] == 'Y')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.exit_o,
 			j * IMG_SIZE, i * IMG_SIZE);
 	else if (data->map.map[i][j] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,

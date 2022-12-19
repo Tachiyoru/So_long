@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 15:57:45 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 16:46:23 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	init_map(t_data *data, int fd, t_lst **maplst)
 	data->map.player = 0;
 	size = 0;
 	data->player.move_count = 0;
+	data->player.collected = 0;
 	data->map.lines = count_lines(fd, 1, maplst, size);
 	if (data->map.lines < 3)
 		return (lines_error(1));

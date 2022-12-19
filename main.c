@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/16 12:31:17 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 17:08:27 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	data = (t_data){0};
 	if (ac != 2)
 		return (write(2, "Run as : ./so_long map\n", 24), EXIT_FAILURE);
 	if (!check_map(&data, av[1]))

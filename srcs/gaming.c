@@ -6,11 +6,19 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:04:29 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/16 14:05:33 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 17:00:48 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	end_game(t_data *data)
+{
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	mlx_do_sync(data->mlx_ptr);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 80, 30, 0xFEFEFF, "movewfdw");
+	mlx_loop(data->mlx_ptr);
+}
 
 int	oui(t_data *data, int y, int x)
 {
@@ -21,15 +29,18 @@ int	oui(t_data *data, int y, int x)
 		data->map.map[y][x] = 'P';
 		data->player.pos_y = y;
 		data->player.pos_x = x;
+		if (data->map.collectible == data->player.collected)
+		{
+			data->map.map[data->player.exit_y][data->player.exit_x] = 'Y';
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.exit_o,
+				data->player.exit_x * IMG_SIZE, data->player.exit_y * IMG_SIZE);
+		}
 	}
-	if (data->map.map[y][x] == 'E')
-	{
-		if (data->player.collected == data->map.collectible)
-			data->player.move_count++;
-			// end_game(data);
+	else if (data->map.map[y][x] == 'Y')
+		end_game(data);
+	else if (data->map.map[y][x] == 'E')
 		return (0);
-	}
-	if (data->map.map[y][x] == '0')
+	else if (data->map.map[y][x] == '0')
 	{
 		data->player.move_count++;
 		data->map.map[y][x] = 'P';
@@ -39,18 +50,18 @@ int	oui(t_data *data, int y, int x)
 	return (1);
 }
 
-void	print_tab(t_data *data)
-{
-	int	i = -1;
-	int	j = -1;
-	while (data->map.map[++i])
-	{
-		while (data->map.map[i][++j])
-			dprintf(STDERR_FILENO, "%c", data->map.map[i][j]);
-		j = -1;
-		dprintf(STDERR_FILENO, "\n");
-	}
-}
+// void	print_tab(t_data *data)
+// {
+// 	int	i = -1;
+// 	int	j = -1;
+// 	while (data->map.map[++i])
+// 	{
+// 		while (data->map.map[i][++j])
+// 			dprintf(STDERR_FILENO, "%c", data->map.map[i][j]);
+// 		j = -1;
+// 		dprintf(STDERR_FILENO, "\n");
+// 	}
+// }
 
 void	salut(t_data data)
 {
@@ -68,9 +79,6 @@ void	movements(t_data *data, int key)
 
 	y = data->player.pos_y;
 	x = data->player.pos_x;
-	print_tab(data);
-	dprintf(STDERR_FILENO, "\nx = %d\n", x);
-	dprintf(STDERR_FILENO, "y = %d\n", y);
 	if (key == K_A || key == K_LEFT)
 	{
 		if (data->map.map[y][x - 1] != '1' && x > 0 &&
