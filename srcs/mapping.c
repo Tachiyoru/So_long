@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:16:12 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/16 14:28:03 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 15:33:31 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ void	what_char(t_data *data, int i, int j)
 	moves = ft_itoa(data->player.move_count);
 	if (data->map.map[i][j] == '1')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.wall,
-			j * 100, i * 100);
+			j * IMG_SIZE, i * IMG_SIZE);
 	else if (data->map.map[i][j] == '0')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->image.ground, j * 100, i * 100);
+			data->image.ground, j * IMG_SIZE, i * IMG_SIZE);
 	else if (data->map.map[i][j] == 'E')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.exit,
-			j * 100, i * 100);
+			j * IMG_SIZE, i * IMG_SIZE);
 	else if (data->map.map[i][j] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->image.player_down, j * 100, i * 100);
+			data->image.player_down, j * IMG_SIZE, i * IMG_SIZE);
 	else if (data->map.map[i][j] == 'C')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.item,
-			j * 100, i * 100);
+			j * IMG_SIZE, i * IMG_SIZE);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 80, 30, 0xFEFEFF, moves);
 	free(moves);
 }

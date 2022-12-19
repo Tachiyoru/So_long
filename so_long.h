@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/16 14:09:35 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 15:31:38 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define IMG_SIZE 100
+# define IMG_SIZE 64
 
-# define GROUND			"image/ground.xpm"
-# define PLAYER_DOWN	"image/player.xpm"
+# define GROUND			"image/sol.xpm"
+# define PLAYER_DOWN	"image/player_down.xpm"
 // # define PLAYER_UP		"image/player_up.xpm"
 // # define PLAYER_LEFT	"image/player.xpm"
 // # define PLAYER_RIGHT	"image/player_right.xpm"
-# define ITEM			"image/item.xpm"
-# define EXIT			"image/exit.xpm"
+# define ITEM			"image/chest_c.xpm"
+# define EXIT			"image/exit_c.xpm"
 # define WALL			"image/wall.xpm"
 
 # define K_ESC 65307

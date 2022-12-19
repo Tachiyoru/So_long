@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:43:04 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 14:27:13 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/19 15:31:48 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	image_to_mlx(t_data	*data)
 {
 	int	img;
 
-	img = 100;
+	img = 64;
 	data->image.ground = mlx_xpm_file_to_image(data->mlx_ptr, GROUND,
 			&img, &img);
 	if (!data->image.ground)
