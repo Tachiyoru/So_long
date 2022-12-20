@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 16:58:03 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 14:55:48 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@
 
 # define GROUND			"image/sol.xpm"
 # define PLAYER_DOWN	"image/player_down.xpm"
-// # define PLAYER_UP		"image/player_up.xpm"
-// # define PLAYER_LEFT	"image/player.xpm"
-// # define PLAYER_RIGHT	"image/player_right.xpm"
+# define PLAYER_UP		"image/player_up.xpm"
+# define PLAYER_LEFT	"image/player_left.xpm"
+# define PLAYER_RIGHT	"image/player_right.xpm"
 # define ITEM			"image/chest_c.xpm"
 # define EXIT			"image/exit_c.xpm"
 # define EXIT_O			"image/exit_o.xpm"
 # define WALL			"image/wall.xpm"
+# define MONSTRE		"image/mechant.xpm"
 
 # define K_ESC 65307
 # define K_UP 65362
@@ -56,10 +57,8 @@ typedef struct s_image
 	void	*exit;
 	void	*exit_o;
 	void	*ground;
-	void	*player_left;
-	void	*player_up;
-	void	*player_down;
-	void	*player_right;
+	void	*player;
+	void	*monstre;
 	void	*item;
 }t_image;
 
@@ -84,6 +83,7 @@ typedef struct s_player
 	int		collected;
 	int		open_exit;
 	int		move_count;
+	int		anim_frame;
 }t_player;
 
 typedef struct s_data
@@ -112,6 +112,7 @@ void	print_tab(t_data *data);
 
 char	*ft_itoa(int n);
 size_t	ft_strlen2(char *s);
+void	free_lst(t_lst **map_lst);
 
 //utils
 t_lst	*ft_lstlast(t_lst *lst);

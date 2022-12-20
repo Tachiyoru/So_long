@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:15:54 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 11:27:50 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 14:45:52 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	present_char_error(int err)
 {
 	ft_puterr("Error\n");
 	if (err == 1)
-		ft_puterr("You can only use '0', '1', 'C', 'E' and 'P' char\n");
+		ft_puterr("You can only use '0', '1', 'C', 'E', 'M' and 'P' char\n");
 	if (err == 2)
 		ft_puterr("You must place 1 or more collectibles\n");
 	if (err == 3)

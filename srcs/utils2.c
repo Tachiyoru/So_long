@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:11:32 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:01:59 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 15:00:22 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,27 @@ size_t	ft_strlen2(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
+}
+
+void	free_lst(t_lst **map_lst)
+{
+	t_lst	*save;
+
+	while (*map_lst)
+	{
+		save = *map_lst;
+		(*map_lst) = (*map_lst)->next;
+		free (save);
+	}
+	free(*map_lst);
+}
+
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while (map->map[++i])
+		free(map->map[i]);
+	free(map);
 }

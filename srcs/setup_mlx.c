@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:43:04 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 16:58:41 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 14:47:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,17 @@ int	image_to_mlx(t_data	*data)
 			&img, &img);
 	if (!data->image.exit_o)
 		return (0);
-	data->image.player_down = mlx_xpm_file_to_image(data->mlx_ptr, PLAYER_DOWN,
+	data->image.player = mlx_xpm_file_to_image(data->mlx_ptr, PLAYER_DOWN,
 			&img, &img);
-	if (!data->image.player_down)
+	if (!data->image.player)
 		return (0);
 	data->image.item = mlx_xpm_file_to_image(data->mlx_ptr, ITEM,
 			&img, &img);
 	if (!data->image.item)
 		return (0);
+	data->image.monstre = mlx_xpm_file_to_image(data->mlx_ptr, MONSTRE,
+			&img, &img);
+	if (!data->image.item)
+		return (0);
 	return (1);
 }
-
-	// data->image.player_up = mlx_xpm_file_to_image(data->mlx_ptr, PLAYER_UP,
-	// 		IMG_SIZE, IMG_SIZE);
-	// if (!data->image.player_up)
-	// 	return (0);
-	// data->image.player_left = mlx_xpm_file_to_image(data->mlx_ptr,
-	//		PLAYER_LEFT, IMG_SIZE, IMG_SIZE);
-	// if (!data->image.player_left)
-	// 	return (0);
-	// data->image.player_right = mlx_xpm_file_to_image(data->mlx_ptr,
-	// 		PLAYER_RIGHT, IMG_SIZE, IMG_SIZE);
-	// if (!data->image.player_right)
-	// 	return (0);

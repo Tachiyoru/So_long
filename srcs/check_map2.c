@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 16:08:20 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 14:46:55 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	good_char(t_data *data, char c)
 	if (c == '1')
 		return (1);
 	if (c == '0')
+		return (1);
+	if (c == 'M')
 		return (1);
 	else if (c == 'C')
 		data->map.collectible++;

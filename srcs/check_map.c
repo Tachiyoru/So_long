@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 16:46:23 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 14:50:16 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	check_map(t_data *data, char *file)
 		return (0);
 	close (fd);
 	save_map(&data->map, map_lst);
+	free_lst(map_lst);
 	if (!check_char(data))
 		return (0);
 	if (!wall_check(data->map))
