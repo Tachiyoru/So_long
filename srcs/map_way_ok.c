@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 12:22:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 16:50:36 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:22:38 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,11 @@ int	check_collectibles(t_data *data, int **bool_map, int y, int x)
 	return (cnt);
 }
 
-int	way_checking_error(int err)
+int	way_checking_error(int err, int **map_0)
 {
 	ft_puterr("Error\n");
 	if (err == 1)
 		ft_puterr("All exits and collectibles must be reachables\n");
+	free_boolmap(map_0);
 	return (0);
 }

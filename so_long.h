@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/20 14:55:48 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/21 11:14:43 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define EXIT_O			"image/exit_o.xpm"
 # define WALL			"image/wall.xpm"
 # define MONSTRE		"image/mechant.xpm"
+# define MONSTRE2		"image/mechant2.xpm"
 
 # define K_ESC 65307
 # define K_UP 65362
@@ -59,6 +60,7 @@ typedef struct s_image
 	void	*ground;
 	void	*player;
 	void	*monstre;
+	void	*monstre2;
 	void	*item;
 }t_image;
 
@@ -112,7 +114,10 @@ void	print_tab(t_data *data);
 
 char	*ft_itoa(int n);
 size_t	ft_strlen2(char *s);
+void	free_map(t_data *data);
 void	free_lst(t_lst **map_lst);
+void	close_img(t_data *data);
+void	free_boolmap(int **bool_map);
 
 //utils
 t_lst	*ft_lstlast(t_lst *lst);
@@ -123,6 +128,7 @@ void	ft_puterr(char *str);
 
 //gaming
 int		crossbutton(t_data *data);
+void	end_game(t_data *data, int a);
 void	movements(t_data *data, int key);
 
 //mapping
@@ -138,7 +144,7 @@ int		**init_map0(t_data *data);
 void	fill_map_0(t_data *data, int **map_0);
 int		check_way(t_data *data, int **map_0, int x, int y);
 int		check_collectibles(t_data *data, int **bool_map, int x, int y);
-int		way_checking_error(int err);
+int		way_checking_error(int err, int **map_0);
 
 //check_map2
 void	save_map(t_map *map, t_lst **maplst);

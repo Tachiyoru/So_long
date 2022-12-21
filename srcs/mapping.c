@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:16:12 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/20 14:48:23 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/21 11:43:55 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,28 @@ int	mapping(t_data *data)
 {
 	int		i;
 	int		j;
+	int		m;
+	int		img = 64;
 
 	i = -1;
+	m = 5;
 	while (data->map.map[++i])
 	{
 		j = -1;
+		if (++m % 2 == 0)
+		{
+			if (data->image.monstre)
+				mlx_destroy_image(data->mlx_ptr, data->image.monstre);
+			data->image.monstre = mlx_xpm_file_to_image(data->mlx_ptr, MONSTRE,
+					&img, &img);
+		}
+		else
+		{
+			if (data->image.monstre)
+				mlx_destroy_image(data->mlx_ptr, data->image.monstre);
+			data->image.monstre = mlx_xpm_file_to_image(data->mlx_ptr, PLAYER_DOWN,
+					&img, &img);
+		}
 		while (data->map.map[i][++j])
 			what_char(data, i, j);
 	}

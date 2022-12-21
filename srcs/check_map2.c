@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/20 14:46:55 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/20 16:47:37 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	save_map(t_map *map, t_lst **maplst)
 	}
 	map->map[row] = NULL;
 }
-	// MEMO free_lst(maplst);
 
 int	check_char(t_data *data)
 {
@@ -120,10 +119,11 @@ int	do_you_know_the_way(t_data *data)
 	if (!map_0)
 		return (0);
 	if (!check_way(data, map_0, data->player.pos_y, data->player.pos_x))
-		return (way_checking_error(1));
+		return (way_checking_error(1, map_0));
 	fill_map_0(data, map_0);
 	if (check_collectibles(data, map_0, data->player.pos_y, data->player.pos_x)
 		!= data->map.collectible)
-		return (way_checking_error(1));
+		return (way_checking_error(1, map_0));
+	free_boolmap(map_0);
 	return (1);
 }

@@ -7,6 +7,7 @@ GNL_DIR = GNL/
 
 SRCS =		main.c							\
 			${SRCS_DIR}utils2.c				\
+			${SRCS_DIR}close.c				\
 			${SRCS_DIR}gaming.c				\
 			${SRCS_DIR}mapping.c			\
 			${SRCS_DIR}setup_mlx.c			\

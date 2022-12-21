@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/19 17:08:27 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/21 11:32:20 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ int	key_capture(int key, t_data *data)
 {
 	if (key == K_ESC)
 	{
+		close_img(data);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
+		free_map(data);
 		exit(1);
 	}
 	if (is_key(key))
@@ -42,10 +44,12 @@ int	key_capture(int key, t_data *data)
 
 int	crossbutton(t_data *data)
 {
+	close_img(data);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	free_map(data);
 	exit(1);
 }
 
