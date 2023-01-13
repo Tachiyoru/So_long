@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 12:27:15 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:07:40 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ int	check_char(t_data *data)
 		while (data->map.map[i][++j])
 		{
 			if (!good_char(data, data->map.map[i][j], i, j))
-				return (present_char_error(1));
+				return (free_map(data), present_char_error(1));
 		}
 	}
 	if (data->map.collectible < 1)
-		return (present_char_error(2));
+		return (free_map(data), present_char_error(2));
 	if (data->map.player != 1)
-		return (present_char_error(4));
+		return (free_map(data), present_char_error(4));
 	if (data->map.exit != 1)
-		return (present_char_error(3));
+		return (free_map(data), present_char_error(3));
 	return (1);
 }
 
@@ -117,13 +117,13 @@ int	do_you_know_the_way(t_data *data)
 
 	map_0 = init_map0(data);
 	if (!map_0)
-		return (0);
+		return (free_map(data), 0);
 	if (!check_way(data, map_0, data->player.pos_y, data->player.pos_x))
-		return (way_checking_error(1, map_0));
+		return (free_map(data), way_checking_error(1, map_0));
 	fill_map_0(data, map_0);
 	if (check_collectibles(data, map_0, data->player.pos_y, data->player.pos_x)
 		!= data->map.collectible)
-		return (way_checking_error(1, map_0));
+		return (free_map(data), way_checking_error(1, map_0));
 	free_boolmap(map_0);
 	return (1);
 }

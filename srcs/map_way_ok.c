@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 12:22:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/20 16:22:38 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:12:51 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int	**init_map0(t_data *data)
 	map_0 = ft_calloc(i + 1, sizeof(int *));
 	if (!map_0)
 		return (NULL);
+	map_0[i] = 0;
 	i = -1;
 	while (data->map.map[++i])
 	{
 		map_0[i] = ft_calloc(j + 1, sizeof(int));
 		if (!map_0[i])
-			return (NULL);
+			return (free_tab(map_0, i), NULL);
 	}
 	fill_map_0(data, map_0);
 	return (map_0);
@@ -88,7 +89,7 @@ int	check_collectibles(t_data *data, int **bool_map, int y, int x)
 	int	cnt;
 
 	cnt = 0;
-	if (bool_map[y][x] == 1)
+	if (bool_map[y][x] == 1 || data->map.map[y][x] == 'E')
 		return (0);
 	bool_map[y][x] = 1;
 	if (data->map.map[y][x] == 'C')

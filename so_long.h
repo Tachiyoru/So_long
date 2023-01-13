@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 14:22:23 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:23:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void	free_boolmap(int **bool_map);
 
 int		mstr_move(t_data *data);
 void	new_monster(t_data *data, int i, int j);
+void	free_tab(int **tab, int n);
 
 //utils
 t_lst	*ft_lstlast(t_lst *lst);
@@ -152,7 +153,7 @@ int		oui(t_data *data, int y, int x);
 
 //mapping
 void	what_char(t_data *data, int i, int j);
-int		mapping(t_data *data);
+void	mapping(t_data *data);
 
 //setup_mlx
 int		setup_window(t_data *data);

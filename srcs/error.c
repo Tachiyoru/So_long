@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:15:54 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/20 14:45:52 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 14:45:33 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	map_checker_error(int err)
 {
 	ft_puterr("Error\n");
 	if (err == 1)
-		ft_puterr("Map file has to be a .ber\n");
+		ft_puterr("Map has to be a .ber file\n");
 	return (0);
 }
 

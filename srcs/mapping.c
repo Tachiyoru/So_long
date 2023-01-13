@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:16:12 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 14:31:33 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:23:12 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	animation(t_data *data, int j, int i)
 	data->count++;
 }
 
-int	mapping(t_data *data)
+void	mapping(t_data *data)
 {
 	int		i;
 	int		j;
@@ -44,7 +44,6 @@ int	mapping(t_data *data)
 			free(moves);
 		}
 	}
-	return (1);
 }
 
 void	what_char(t_data *data, int i, int j)

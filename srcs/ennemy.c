@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:38:23 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 14:04:11 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:36:02 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int	mstr_move_up(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y - 1][mon->mon_x] != '1'
-		&& map->map[mon->mon_y - 1][mon->mon_x] != 'M')
+		&& map->map[mon->mon_y - 1][mon->mon_x] != 'M'
+		&& map->map[mon->mon_y - 1][mon->mon_x] != 'E')
 	{
 		if (map->map[mon->mon_y - 1][mon->mon_x] == 'P')
 			return (0);
-		if (mon->last_pos == 'E')
-			map->map[mon->mon_y][mon->mon_x] = 'E';
 		else if (mon->last_pos == 'C')
 			map->map[mon->mon_y][mon->mon_x] = 'C';
 		else
@@ -36,12 +35,11 @@ int	mstr_move_up(t_map *map, t_mnster *mon)
 int	mstr_move_left(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y][mon->mon_x - 1] != '1'
-		&& map->map[mon->mon_y][mon->mon_x - 1] != 'M')
+		&& map->map[mon->mon_y][mon->mon_x - 1] != 'M'
+		&& map->map[mon->mon_y][mon->mon_x - 1] != 'E')
 	{
 		if (map->map[mon->mon_y][mon->mon_x - 1] == 'P')
 			return (0);
-		if (mon->last_pos == 'E')
-			map->map[mon->mon_y][mon->mon_x] = 'E';
 		else if (mon->last_pos == 'C')
 			map->map[mon->mon_y][mon->mon_x] = 'C';
 		else
@@ -57,12 +55,11 @@ int	mstr_move_left(t_map *map, t_mnster *mon)
 int	mstr_move_right(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y][mon->mon_x + 1] != '1'
-		&& map->map[mon->mon_y][mon->mon_x + 1] != 'M')
+		&& map->map[mon->mon_y][mon->mon_x + 1] != 'M'
+		&& map->map[mon->mon_y][mon->mon_x + 1] != 'E')
 	{
 		if (map->map[mon->mon_y][mon->mon_x + 1] == 'P')
 			return (0);
-		if (mon->last_pos == 'E')
-			map->map[mon->mon_y][mon->mon_x] = 'E';
 		else if (mon->last_pos == 'C')
 			map->map[mon->mon_y][mon->mon_x] = 'C';
 		else
@@ -78,12 +75,11 @@ int	mstr_move_right(t_map *map, t_mnster *mon)
 int	mstr_move_down(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y + 1][mon->mon_x] != '1'
-		&& map->map[mon->mon_y + 1][mon->mon_x] != 'M')
+		&& map->map[mon->mon_y + 1][mon->mon_x] != 'M'
+		&& map->map[mon->mon_y + 1][mon->mon_x] != 'E')
 	{
 		if (map->map[mon->mon_y + 1][mon->mon_x] == 'P')
 			return (0);
-		if (mon->last_pos == 'E')
-			map->map[mon->mon_y][mon->mon_x] = 'E';
 		else if (mon->last_pos == 'C')
 			map->map[mon->mon_y][mon->mon_x] = 'C';
 		else

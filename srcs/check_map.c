@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 13:12:44 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:26:25 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ int	pre_check_wrong_map(char *file)
 		return (0);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (free(buf), 0);
 	ret = read(fd, buf, 3);
 	if (ret < 0 || ret == 0)
-		return (0);
+		return (free(buf), 0);
 	close(fd);
 	while (buf[i])
 	{

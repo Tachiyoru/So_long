@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 12:32:53 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:26:55 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,12 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (write(2, "Run as : ./so_long map\n", 24), EXIT_FAILURE);
 	if (!check_map(&data, av[1]))
-		return (false);
+		return (2);
 	if (!setup_window(&data))
-		return (false);
+		return (3);
 	mapping(&data);
 	salut(data);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 	return (true);
 }
-	// ft_destroy_img(&data);

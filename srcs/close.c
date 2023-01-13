@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:12:24 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/21 13:16:41 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 15:13:15 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,17 @@ void	free_boolmap(int **bool_map)
 		free(bool_map[i]);
 	free(bool_map);
 	return ;
+}
+
+void	free_tab(int **tab, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:11:32 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 12:59:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 14:55:08 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	free_map(t_data *data)
 	while (data->map.map[++i])
 		free(data->map.map[i]);
 	free(data->map.map);
+	if (data->map.ennemy == 0)
+		free(data->monster);
 	while (data->map.ennemy--)
 	{
 		tmp = data->monster;
