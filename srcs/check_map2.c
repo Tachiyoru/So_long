@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 15:07:40 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 17:37:53 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	save_map(t_map *map, t_lst **maplst)
 	{
 		map->map[row] = ft_calloc(size, sizeof(char));
 		if (!map->map[row])
-			return (free (map->map));
+			return (free(map->map)); //rajouter free_tab avec char **
 		while (save->mapline[++i] != '\0' && save->mapline[i] != '\n')
 			map->map[row][++column] = save->mapline[i];
 		save = save->next;
@@ -52,7 +52,13 @@ int	check_char(t_data *data)
 		while (data->map.map[i][++j])
 		{
 			if (!good_char(data, data->map.map[i][j], i, j))
-				return (free_map(data), present_char_error(1));
+			{
+				present_char_error(1);
+				free(data->monster);
+				free_tab_char(data->map.map, data->map.lines);
+				exit(1);
+				return (present_char_error(1));
+			}
 		}
 	}
 	if (data->map.collectible < 1)
@@ -71,7 +77,10 @@ int	good_char(t_data *data, char c, int i, int j)
 	if (c == '0')
 		return (1);
 	if (c == 'M')
-		new_monster(data, i, j);
+	{
+		if (!new_monster(data, i, j))
+			return (0);
+	}
 	else if (c == 'C')
 		data->map.collectible++;
 	else if (c == 'E')

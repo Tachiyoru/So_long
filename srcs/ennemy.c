@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:38:23 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 15:36:02 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 17:03:09 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	mstr_move_up(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y - 1][mon->mon_x] != '1'
 		&& map->map[mon->mon_y - 1][mon->mon_x] != 'M'
-		&& map->map[mon->mon_y - 1][mon->mon_x] != 'E')
+		&& map->map[mon->mon_y - 1][mon->mon_x] != 'E'
+		&& map->map[mon->mon_y - 1][mon->mon_x] != 'Y')
 	{
 		if (map->map[mon->mon_y - 1][mon->mon_x] == 'P')
 			return (0);
@@ -36,6 +37,7 @@ int	mstr_move_left(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y][mon->mon_x - 1] != '1'
 		&& map->map[mon->mon_y][mon->mon_x - 1] != 'M'
+		&& map->map[mon->mon_y][mon->mon_x - 1] != 'Y'
 		&& map->map[mon->mon_y][mon->mon_x - 1] != 'E')
 	{
 		if (map->map[mon->mon_y][mon->mon_x - 1] == 'P')
@@ -56,6 +58,7 @@ int	mstr_move_right(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y][mon->mon_x + 1] != '1'
 		&& map->map[mon->mon_y][mon->mon_x + 1] != 'M'
+		&& map->map[mon->mon_y][mon->mon_x + 1] != 'Y'
 		&& map->map[mon->mon_y][mon->mon_x + 1] != 'E')
 	{
 		if (map->map[mon->mon_y][mon->mon_x + 1] == 'P')
@@ -76,6 +79,7 @@ int	mstr_move_down(t_map *map, t_mnster *mon)
 {
 	if (map->map[mon->mon_y + 1][mon->mon_x] != '1'
 		&& map->map[mon->mon_y + 1][mon->mon_x] != 'M'
+		&& map->map[mon->mon_y + 1][mon->mon_x] != 'Y'
 		&& map->map[mon->mon_y + 1][mon->mon_x] != 'E')
 	{
 		if (map->map[mon->mon_y + 1][mon->mon_x] == 'P')
