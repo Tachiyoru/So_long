@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/20 16:47:37 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:27:15 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	check_char(t_data *data)
 		j = -1;
 		while (data->map.map[i][++j])
 		{
-			if (!good_char(data, data->map.map[i][j]))
+			if (!good_char(data, data->map.map[i][j], i, j))
 				return (present_char_error(1));
 		}
 	}
@@ -64,14 +64,14 @@ int	check_char(t_data *data)
 	return (1);
 }
 
-int	good_char(t_data *data, char c)
+int	good_char(t_data *data, char c, int i, int j)
 {
 	if (c == '1')
 		return (1);
 	if (c == '0')
 		return (1);
 	if (c == 'M')
-		return (1);
+		new_monster(data, i, j);
 	else if (c == 'C')
 		data->map.collectible++;
 	else if (c == 'E')

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 11:02:57 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:23:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	init_map(t_data *data, int fd, t_lst **maplst)
 	data->map.collectible = 0;
 	data->map.exit = 0;
 	data->map.player = 0;
+	data->map.ennemy = 0;
+	data->monster = malloc(sizeof(t_mnster));
 	size = 0;
 	data->player.move_count = 0;
 	data->player.collected = 0;

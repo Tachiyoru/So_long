@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/21 11:32:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:32:53 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	key_capture(int key, t_data *data)
 		exit(1);
 	}
 	if (is_key(key))
-		movements(data, key);
+	{
+		if (movements(data, key))
+			mstr_move(data);
+	}
 	return (0);
 }
 

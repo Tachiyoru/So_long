@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 11:09:49 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 12:32:03 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_map
 	int		size_x;
 	int		size_y;
 	int		collectible;
+	int		ennemy;
 	int		player;
 	int		exit;
 	int		lines;
@@ -88,6 +89,14 @@ typedef struct s_player
 	int		anim_frame;
 }t_player;
 
+typedef struct s_mnster
+{
+	int				mon_x;
+	int				mon_y;
+	char			last_pos;
+	struct s_mnster	*next;
+}t_mnster;
+
 typedef struct s_data
 {
 	int			win_largeur;
@@ -97,16 +106,8 @@ typedef struct s_data
 	t_image		image;
 	t_map		map;
 	t_player	player;
-
+	t_mnster	*monster;
 }t_data;
-
-typedef struct s_mnster
-{
-	int				a;
-	int				x;
-	int				y;
-	struct s_mnster	*next;
-}t_mnster;
 
 typedef struct s_lst
 {
@@ -127,6 +128,9 @@ void	free_lst(t_lst **map_lst);
 void	close_img(t_data *data);
 void	free_boolmap(int **bool_map);
 
+int		mstr_move(t_data *data);
+void	new_monster(t_data *data, int i, int j);
+
 //utils
 t_lst	*ft_lstlast(t_lst *lst);
 t_lst	*new_node(char *content);
@@ -135,7 +139,10 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_puterr(char *str);
 
 //gaming_mov
-void	movements(t_data *data, int key);
+int		movements(t_data *data, int key);
+int		movements2(t_data *data, int key, int x, int y);
+int		movements3(t_data *data, int key, int x, int y);
+int		movements4(t_data *data, int key, int x, int y);
 
 //gaming
 int		crossbutton(t_data *data);
@@ -160,7 +167,7 @@ int		way_checking_error(int err, int **map_0);
 //check_map2
 void	save_map(t_map *map, t_lst **maplst);
 int		check_char(t_data *data);
-int		good_char(t_data *data, char c);
+int		good_char(t_data *data, char c, int i, int j);
 int		wall_check(t_map map);
 int		do_you_know_the_way(t_data *data);
 

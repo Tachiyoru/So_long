@@ -6,13 +6,15 @@ CHECK_DIR = check/
 GNL_DIR = GNL/
 
 SRCS =		main.c							\
+			${SRCS_DIR}utils.c				\
 			${SRCS_DIR}utils2.c				\
 			${SRCS_DIR}close.c				\
 			${SRCS_DIR}gaming.c				\
-			${SRCS_DIR}gaming_mov.c		\
+			${SRCS_DIR}gaming_mov.c			\
+			${SRCS_DIR}ennemy.c				\
+			${SRCS_DIR}mstr_utils.c			\
 			${SRCS_DIR}mapping.c			\
 			${SRCS_DIR}setup_mlx.c			\
-			${SRCS_DIR}utils.c				\
 			${SRCS_DIR}check_map.c			\
 			${SRCS_DIR}check_map2.c			\
 			${SRCS_DIR}error.c				\
