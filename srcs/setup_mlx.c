@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:43:04 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 14:04:00 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 14:25:04 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ int	image_to_mlx2(t_data	*data)
 		return (0);
 	data->image.monstre = mlx_xpm_file_to_image(data->mlx_ptr, MONSTRE,
 			&img, &img);
-	if (!data->image.item)
+	if (!data->image.monstre)
+		return (0);
+	data->image.monstre2 = mlx_xpm_file_to_image(data->mlx_ptr, MONSTRE2,
+			&img, &img);
+	if (!data->image.monstre2)
 		return (0);
 	return (1);
 }

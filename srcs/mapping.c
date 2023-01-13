@@ -6,11 +6,24 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:16:12 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/21 14:20:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 14:31:33 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	animation(t_data *data, int j, int i)
+{
+	if (data->count <= 50)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->image.monstre, j * IMG_SIZE, i * IMG_SIZE);
+	else if (data->count > 50)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->image.monstre2, j * IMG_SIZE, i * IMG_SIZE);
+	if (data->count == 100)
+		data->count = 0;
+	data->count++;
+}
 
 int	mapping(t_data *data)
 {
@@ -43,8 +56,7 @@ void	what_char(t_data *data, int i, int j)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->image.ground, j * IMG_SIZE, i * IMG_SIZE);
 	else if (data->map.map[i][j] == 'M')
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->image.monstre, j * IMG_SIZE, i * IMG_SIZE);
+		animation(data, j, i);
 	else if (data->map.map[i][j] == 'E')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.exit,
 			j * IMG_SIZE, i * IMG_SIZE);

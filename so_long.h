@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 12:32:03 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 14:22:23 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_data
 {
 	int			win_largeur;
 	int			win_l;
+	int			count;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_image		image;
