@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/21 11:14:43 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 11:09:49 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_player
 typedef struct s_data
 {
 	int			win_largeur;
-	int			win_longueur;
+	int			win_l;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_image		image;
@@ -99,6 +99,14 @@ typedef struct s_data
 	t_player	player;
 
 }t_data;
+
+typedef struct s_mnster
+{
+	int				a;
+	int				x;
+	int				y;
+	struct s_mnster	*next;
+}t_mnster;
 
 typedef struct s_lst
 {
@@ -126,10 +134,13 @@ void	*ft_memset(void *a, int i, size_t count);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_puterr(char *str);
 
+//gaming_mov
+void	movements(t_data *data, int key);
+
 //gaming
 int		crossbutton(t_data *data);
 void	end_game(t_data *data, int a);
-void	movements(t_data *data, int key);
+int		oui(t_data *data, int y, int x);
 
 //mapping
 void	what_char(t_data *data, int i, int j);

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:12:24 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/21 11:42:16 by sleon            ###   ########.fr       */
+/*   Updated: 2022/12/21 13:16:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	close_img(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->image.exit_o);
 	if (data->image.monstre)
 		mlx_destroy_image(data->mlx_ptr, data->image.monstre);
-	// if (data->image.monstre2)
-	// 	mlx_destroy_image(data->mlx_ptr, data->image.monstre2);
+	if (data->image.monstre2)
+		mlx_destroy_image(data->mlx_ptr, data->image.monstre2);
 }
 
 void	free_boolmap(int **bool_map)

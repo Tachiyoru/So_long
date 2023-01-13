@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:43:04 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/21 11:42:23 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 11:09:49 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	setup_window(t_data *data)
 {
 	data->win_largeur = IMG_SIZE * data->map.size_y;
-	data->win_longueur = IMG_SIZE * data->map.size_x;
+	data->win_l = IMG_SIZE * data->map.size_x;
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (false);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_longueur,
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_l,
 			data->win_largeur, "oui");
 	if (data->win_ptr == NULL)
 		return (false);
@@ -28,6 +28,26 @@ int	setup_window(t_data *data)
 	return (true);
 }
 // free la sturc en cas d'erreur
+
+int	image_to_mlx2(t_data	*data)
+{
+	int	img;
+
+	img = 64;
+	data->image.player = mlx_xpm_file_to_image(data->mlx_ptr, PLAYER_DOWN,
+			&img, &img);
+	if (!data->image.player)
+		return (0);
+	data->image.item = mlx_xpm_file_to_image(data->mlx_ptr, ITEM,
+			&img, &img);
+	if (!data->image.item)
+		return (0);
+	data->image.monstre = mlx_xpm_file_to_image(data->mlx_ptr, MONSTRE,
+			&img, &img);
+	if (!data->image.item)
+		return (0);
+	return (1);
+}
 
 int	image_to_mlx(t_data	*data)
 {
@@ -50,17 +70,7 @@ int	image_to_mlx(t_data	*data)
 			&img, &img);
 	if (!data->image.exit_o)
 		return (0);
-	data->image.player = mlx_xpm_file_to_image(data->mlx_ptr, PLAYER_DOWN,
-			&img, &img);
-	if (!data->image.player)
-		return (0);
-	data->image.item = mlx_xpm_file_to_image(data->mlx_ptr, ITEM,
-			&img, &img);
-	if (!data->image.item)
-		return (0);
-	data->image.monstre = mlx_xpm_file_to_image(data->mlx_ptr, MONSTRE,
-			&img, &img);
-	if (!data->image.item)
+	if (!image_to_mlx2(data))
 		return (0);
 	return (1);
 }
