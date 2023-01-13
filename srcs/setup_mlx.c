@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:43:04 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 11:09:49 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 14:04:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	setup_window(t_data *data)
 	data->win_l = IMG_SIZE * data->map.size_x;
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
+	{
+		free_map(data);
 		return (false);
+	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_l,
 			data->win_largeur, "oui");
 	if (data->win_ptr == NULL)
@@ -27,7 +30,6 @@ int	setup_window(t_data *data)
 		return (false);
 	return (true);
 }
-// free la sturc en cas d'erreur
 
 int	image_to_mlx2(t_data	*data)
 {

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:27:59 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 12:45:19 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/13 13:17:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void	new_monster(t_data *data, int i, int j)
 	}
 	else
 	{
-		tmp = malloc(sizeof(t_mnster *));
+		tmp = malloc(sizeof(t_mnster));
 		last = ft_2lstlast(data->monster);
 		tmp->mon_y = i;
 		tmp->mon_x = j;
 		tmp->last_pos = 'a';
+		tmp->next = NULL;
 		last->next = tmp;
 	}
 }
