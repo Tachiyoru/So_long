@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 10:55:22 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 14:14:40 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 16:11:19 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ char	*ft_read_line(int fd, char *line)
 	return (line);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int reset)
 {
 	char		*buff;
 	static char	*line;
 
+	if (reset)
+		return (free(line), NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	line = ft_read_line(fd, line);

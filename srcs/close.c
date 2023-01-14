@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:12:24 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 17:37:42 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 15:25:25 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	free_tab(int **tab, int n)
 
 void	free_tab_char(char **tab, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < n)

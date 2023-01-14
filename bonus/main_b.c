@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 15:11:19 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 15:09:22 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	key_capture(int key, t_data *data)
 	if (is_key(key))
 	{
 		if (movements(data, key))
-			printf("move number : %d \n", data->player.move_count);
+			mstr_move(data);
 	}
 	return (0);
 }

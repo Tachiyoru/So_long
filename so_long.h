@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 17:37:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 15:32:50 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ int		way_checking_error(int err, int **map_0);
 //check_map2
 void	save_map(t_map *map, t_lst **maplst);
 int		check_char(t_data *data);
-int		good_char(t_data *data, char c, int i, int j);
+int		good_char(t_data *data, char c);
 int		wall_check(t_map map);
 int		do_you_know_the_way(t_data *data);
 

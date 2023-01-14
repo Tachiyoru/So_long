@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:45 by sleon             #+#    #+#             */
-/*   Updated: 2022/12/14 11:28:09 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 16:21:05 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ t_lst	*new_node(char *content)
 
 	i = -1;
 	node = malloc(sizeof(t_lst));
-	node->mapline = ft_calloc(ft_strlen(content), sizeof(char));
 	if (!node)
+		return (0);
+	node->mapline = ft_calloc(ft_strlen(content), sizeof(char));
+	if (!node->mapline)
 		return (0);
 	while (content[++i])
 		node->mapline[i] = content[i];

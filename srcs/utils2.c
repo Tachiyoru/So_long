@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:11:32 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 17:17:42 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 16:01:17 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,18 @@ void	free_lst(t_lst **map_lst)
 	t_lst	*tmp;
 	t_lst	*del;
 
-	tmp = *map_lst;
-	while (tmp)
+	if (map_lst)
 	{
-		del = tmp;
-		tmp = tmp->next;
-		free(del->mapline);
-		free(del);
+		tmp = *map_lst;
+		while (tmp)
+		{
+			del = tmp;
+			tmp = tmp->next;
+			free(del->mapline);
+			free(del);
+		}
+		*map_lst = NULL;
 	}
-	*map_lst = NULL;
 	free(map_lst);
 }
 

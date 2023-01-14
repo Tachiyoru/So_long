@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 17:33:49 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 16:23:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_map(t_data *data, char *file)
 	if (!wall_check(data->map))
 		return (free_map(data), 0);
 	if (!do_you_know_the_way(data))
-		return (free_map(data), 0);
+		return (0);
 	return (1);
 }
 
@@ -101,8 +101,10 @@ int	init_map(t_data *data, int fd, t_lst **maplst)
 	data->player.move_count = 0;
 	data->player.collected = 0;
 	data->map.lines = count_lines(fd, 1, maplst, size);
+	if (data->map.lines == -1)
+		return (lines_error(3));
 	if (data->map.lines < 3)
-		return (free_lst(maplst), free(data->monster), lines_error(1));
+		return (free_lst(maplst), lines_error(1));
 	data->map.size_y = data->map.lines;
 	data->map.size_x = ft_strlen2((*maplst)->mapline);
 	data->map.map = ft_calloc(data->map.lines + 1, sizeof(char *));
@@ -118,15 +120,16 @@ int	count_lines(int fd, int lines, t_lst **maplst, size_t size)
 	t_lst	*new;
 	t_lst	*last;
 
-	line = get_next_line(fd);
+	line = get_next_line(fd, 0);
 	size = ft_strlen(line);
 	tmp = new_node(line);
+	*maplst = tmp;
 	while (line != NULL)
 	{
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd, 0);
 		if (line && ft_strlen(line) != size)
-			return (free(line), lines_error(3));
+			return (free_lst(maplst), get_next_line(fd, 1), free(line), -1);
 		if (line && ++lines)
 		{
 			new = new_node(line);
@@ -135,6 +138,5 @@ int	count_lines(int fd, int lines, t_lst **maplst, size_t size)
 		}
 	}
 	free(line);
-	*maplst = tmp;
 	return (lines);
 }

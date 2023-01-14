@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map2.c                                       :+:      :+:    :+:   */
+/*   check_map2_b.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 15:48:29 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/14 15:49:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,28 @@ void	save_map(t_map *map, t_lst **maplst)
 	map->map[row] = NULL;
 }
 
+int	good_char2(t_data *data, char c, int i, int j)
+{
+	if (c == '1')
+		return (1);
+	if (c == '0')
+		return (1);
+	if (c == 'M')
+	{
+		if (!new_monster(data, i, j))
+			return (0);
+	}
+	else if (c == 'C')
+		data->map.collectible++;
+	else if (c == 'E')
+		data->map.exit++;
+	else if (c == 'P')
+		data->map.player++;
+	else
+		return (0);
+	return (1);
+}
+
 int	check_char(t_data *data)
 {
 	int	i;
@@ -51,10 +73,8 @@ int	check_char(t_data *data)
 		j = -1;
 		while (data->map.map[i][++j])
 		{
-			if (!good_char(data, data->map.map[i][j]))
-			{
+			if (!good_char2(data, data->map.map[i][j], i, j))
 				return (present_char_error(1));
-			}
 		}
 	}
 	if (data->map.collectible < 1)
@@ -63,23 +83,6 @@ int	check_char(t_data *data)
 		return (free_map(data), present_char_error(4));
 	if (data->map.exit != 1)
 		return (free_map(data), present_char_error(3));
-	return (1);
-}
-
-int	good_char(t_data *data, char c)
-{
-	if (c == '1')
-		return (1);
-	if (c == '0')
-		return (1);
-	else if (c == 'C')
-		data->map.collectible++;
-	else if (c == 'E')
-		data->map.exit++;
-	else if (c == 'P')
-		data->map.player++;
-	else
-		return (0);
 	return (1);
 }
 
