@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:15:54 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 14:45:33 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/16 12:09:36 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	present_char_error(int err)
 {
 	ft_puterr("Error\n");
 	if (err == 1)
-		ft_puterr("You can only use '0', '1', 'C', 'E', 'M' and 'P' char\n");
+		ft_puterr("You can only use 0, 1, C, E and P char and M in bonus\n");
 	if (err == 2)
 		ft_puterr("You must place 1 or more collectibles\n");
 	if (err == 3)
@@ -51,15 +51,5 @@ int	wall_checker_error(int err)
 	ft_puterr("Error\n");
 	if (err == 1)
 		ft_puterr("All map borders must be walls\n");
-	return (0);
-}
-
-int	pre_check_wrong_map_error(char *buf, int err)
-{
-	if (buf)
-		free(buf);
-	ft_puterr("Error\n");
-	if (err == 1)
-		ft_puterr("Map non valide\n");
 	return (0);
 }

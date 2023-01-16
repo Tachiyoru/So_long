@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 16:23:41 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/16 12:32:18 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	check_map(t_data *data, char *file)
 
 	if (!check_ber(file))
 		return (map_checker_error(1));
-	if (!pre_check_wrong_map(file))
-		return (0);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (write(1, "Failed to open\n", 16), 0);
@@ -59,33 +57,6 @@ int	check_ber(char *file)
 	return (true);
 }
 
-int	pre_check_wrong_map(char *file)
-{
-	int		fd;
-	char	*buf;
-	int		ret;
-	int		i;
-
-	i = 0;
-	buf = ft_calloc(4, sizeof(*buf));
-	if (!buf)
-		return (0);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (free(buf), 0);
-	ret = read(fd, buf, 3);
-	if (ret < 0 || ret == 0)
-		return (free(buf), 0);
-	close(fd);
-	while (buf[i])
-	{
-		if (buf[i] != '1')
-			return (pre_check_wrong_map_error(buf, 1));
-		i++;
-	}
-	return (free(buf), 1);
-}
-
 int	init_map(t_data *data, int fd, t_lst **maplst)
 {
 	size_t	size;
@@ -103,6 +74,8 @@ int	init_map(t_data *data, int fd, t_lst **maplst)
 	data->map.lines = count_lines(fd, 1, maplst, size);
 	if (data->map.lines == -1)
 		return (lines_error(3));
+	if (!check_wall(maplst, size))
+		return (free_lst(maplst), wall_checker_error(1));
 	if (data->map.lines < 3)
 		return (free_lst(maplst), lines_error(1));
 	data->map.size_y = data->map.lines;
@@ -110,6 +83,35 @@ int	init_map(t_data *data, int fd, t_lst **maplst)
 	data->map.map = ft_calloc(data->map.lines + 1, sizeof(char *));
 	if (!data->map.map)
 		return (free_lst(maplst), 0);
+	return (1);
+}
+
+int	check_wall(t_lst **maplst, int s)
+{
+	int		j;
+	t_lst	*tmp;
+
+	tmp = *maplst;
+	s = ft_strlen2(tmp->mapline) - 1;
+	j = -1;
+	while (++j < s)
+	{
+		if (tmp->mapline[j] != '1')
+			return (0);
+	}
+	tmp = tmp->next;
+	while (tmp->next)
+	{
+		if (tmp->mapline[0] != '1' || tmp->mapline[s] != '1')
+			return (0);
+		tmp = tmp->next;
+	}
+	j = -1;
+	while (++j < s)
+	{
+		if (tmp->mapline[j] != '1')
+			return (0);
+	}
 	return (1);
 }
 

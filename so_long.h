@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 15:32:50 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/16 12:16:11 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,11 +184,11 @@ int		init_map(t_data *data, int fd, t_lst **maplst);
 int		count_lines(int fd, int lines, t_lst **maplst, size_t size);
 
 //error
+int		check_wall(t_lst **maplst, int s);
 int		map_checker_error(int err);
 int		lines_error(int err);
 int		present_char_error(int err);
 int		wall_checker_error(int err);
-int		pre_check_wrong_map_error(char *buf, int err);
 
 //main
 int		key_capture(int key, t_data *data);
