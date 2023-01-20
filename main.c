@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:37:15 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 15:11:19 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:13:29 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ int	is_key(int k)
 	return (0);
 }
 
+void	write_move(t_data *data)
+{
+	char	*move;
+	int		s;
+
+	move = ft_itoa(data->player.move_count);
+	s = ft_strlen2(move);
+	write(1, "move number :", 13);
+	write(1, move, s);
+	write(1, ". \n", 3);
+	free(move);
+}
+
 int	key_capture(int key, t_data *data)
 {
 	if (key == K_ESC)
@@ -40,7 +53,7 @@ int	key_capture(int key, t_data *data)
 	if (is_key(key))
 	{
 		if (movements(data, key))
-			printf("move number : %d \n", data->player.move_count);
+			write_move(data);
 	}
 	return (0);
 }

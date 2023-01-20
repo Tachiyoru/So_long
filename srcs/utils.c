@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:17:45 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 16:21:05 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:25:40 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_lst	*new_node(char *content)
 	node->mapline = ft_calloc(ft_strlen(content), sizeof(char));
 	if (!node->mapline)
 		return (0);
+	if (ft_strlen(content) < 3)
+		return (NULL);
 	while (content[++i])
 		node->mapline[i] = content[i];
 	node->next = NULL;

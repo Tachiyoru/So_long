@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:15:54 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/16 12:09:36 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:52:48 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int	lines_error(int err)
 {
 	ft_puterr("Error\n");
 	if (err == 1)
-		ft_puterr("Map need atleast 3 lines\n");
-	if (err == 2)
-		ft_puterr("Need atleast 3 columns\n");
+		ft_puterr("Map need atleast 3 lines or columns\n");
 	if (err == 3)
 		ft_puterr("All horizontal lanes needs same lenght\n");
 	return (0);

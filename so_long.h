@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:14:22 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/16 12:16:11 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:49:28 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,18 +173,16 @@ int		way_checking_error(int err, int **map_0);
 void	save_map(t_map *map, t_lst **maplst);
 int		check_char(t_data *data);
 int		good_char(t_data *data, char c);
-int		wall_check(t_map map);
 int		do_you_know_the_way(t_data *data);
 
 //check_map
 int		check_map(t_data *data, char *file);
 int		check_ber(char *file);
-int		pre_check_wrong_map(char *file);
+int		check_wall(t_lst **maplst, int s);
 int		init_map(t_data *data, int fd, t_lst **maplst);
 int		count_lines(int fd, int lines, t_lst **maplst, size_t size);
 
 //error
-int		check_wall(t_lst **maplst, int s);
 int		map_checker_error(int err);
 int		lines_error(int err);
 int		present_char_error(int err);

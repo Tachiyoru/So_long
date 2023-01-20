@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 10:55:22 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 16:11:19 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:04:14 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_read_line(int fd, char *line)
 	if (!buff)
 		return (NULL);
 	byte_readed = 1;
-	while (!ft_strchr(line, '\n') && byte_readed != 0)
+	while ((!ft_strchr(line, '\n') || !ft_strchr(line, '\n'))
+		&& byte_readed != 0)
 	{
 		byte_readed = read(fd, buff, BUFFER_SIZE);
 		if (byte_readed == -1)

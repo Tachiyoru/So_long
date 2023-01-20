@@ -50,6 +50,9 @@ all:		${NAME}
 .c.o:
 		${CC} ${CFLAGS} -I${MLX} -c $< -o ${<:.c=.o}
 
+$(MLX_LIB):
+		make -C ${MLX} -j
+
 $(NAME):	${MAIN_M} ${OBJS} $(MLX_LIB)
 		${CC} ${CFLAGS} ${MAIN_M} ${OBJS} -o ${NAME} ${MLX_LIB}\
 		-L -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
@@ -61,10 +64,7 @@ $(NAME_B):	${OBJS} ${OBJS_B} $(MLX_LIB)
 		${CC} ${CFLAGS} ${OBJS} ${OBJS_B} -o ${NAME_B} ${MLX_LIB}\
 		-L -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 		@echo "$(GREEN)##### so_long est compilé avec bonus! #####$(DEFAULT)"
-
-$(MLX_LIB):
-		make -C ${MLX} -j
-
+		
 clean:
 		${RM} ${OBJS}
 		${RM} ${MAIN_M}

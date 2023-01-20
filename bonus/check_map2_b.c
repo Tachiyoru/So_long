@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:12:53 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/14 15:49:34 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/19 12:07:26 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_char(t_data *data)
 		while (data->map.map[i][++j])
 		{
 			if (!good_char2(data, data->map.map[i][j], i, j))
-				return (present_char_error(1));
+				return (free_map(data), present_char_error(1));
 		}
 	}
 	if (data->map.collectible < 1)
@@ -86,30 +86,31 @@ int	check_char(t_data *data)
 	return (1);
 }
 
-int	wall_check(t_map map)
+int	check_wall(t_lst **maplst, int s)
 {
-	int	i;
-	int	j;
+	int		j;
+	t_lst	*tmp;
 
-	i = -1;
-	while (map.map[++i])
+	tmp = *maplst;
+	s = ft_strlen2(tmp->mapline) - 1;
+	j = -1;
+	while (++j < s)
 	{
-		j = -1;
-		if (i == 0 || map.map[i + 1] == NULL)
-		{
-			while (map.map[i][++j])
-			{
-				if (map.map[i][j] != '1')
-					return (wall_checker_error(1));
-			}
-		}
-		else
-		{
-			while (map.map[i][++j + 1])
-				;
-			if (map.map[i][0] != '1' && map.map[i][j] != '1')
-				return (wall_checker_error(1));
-		}
+		if (tmp->mapline[j] != '1')
+			return (0);
+	}
+	tmp = tmp->next;
+	while (tmp->next)
+	{
+		if (tmp->mapline[0] != '1' || tmp->mapline[s] != '1')
+			return (0);
+		tmp = tmp->next;
+	}
+	j = -1;
+	while (++j < s)
+	{
+		if (tmp->mapline[j] != '1')
+			return (0);
 	}
 	return (1);
 }

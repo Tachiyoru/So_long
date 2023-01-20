@@ -6,11 +6,38 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:04:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/01/13 15:12:24 by sleon            ###   ########.fr       */
+/*   Updated: 2023/01/19 11:15:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	write_end(t_data *data, int a)
+{
+	char	*move;
+	int		s;
+
+	move = ft_itoa(data->player.move_count);
+	s = ft_strlen2(move);
+	if (a == 1)
+	{
+		write(1, "You won in [", 12);
+		write(1, move, s);
+		write(1, "] moves\n", 8);
+		free(move);
+		exit(0);
+	}
+	else if (a == 0)
+	{
+		write(1, "You lost in [", 13);
+		write(1, move, s);
+		write(1, "] moves\n", 8);
+		free(move);
+		exit(0);
+	}
+	else
+		exit(1);
+}
 
 void	end_game(t_data *data, int a)
 {
@@ -21,20 +48,7 @@ void	end_game(t_data *data, int a)
 	free(data->mlx_ptr);
 	data->mlx_ptr = NULL;
 	free_map(data);
-	if (a == 1)
-	{
-		dprintf(STDOUT_FILENO, "You won in [%d] moves\n",
-			data->player.move_count);
-		exit(0);
-	}
-	else if (a == 0)
-	{
-		dprintf(STDOUT_FILENO, "You lost in [%d] moves\n",
-			data->player.move_count);
-		exit(0);
-	}
-	else
-		exit(1);
+	write_end(data, a);
 }
 
 int	oui2(t_data *data, int y, int x)
